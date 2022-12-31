@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Dict, Union, Optional, List
 from dataclasses import dataclass
 import pandas as pd
-from constants import DEFAULT_VALUES, META_COLS
+from .constants import DEFAULT_VALUES, META_COLS
 import copy
 from collections import defaultdict
 
@@ -110,7 +110,6 @@ def read_folder(folder_path: Union[Path,str]) -> List[Preset]:
 
 def remove_duplicates(df: pd.DataFrame):
     ignored_columns = set(META_COLS)
-    print("Skipped", META_COLS)
     cols_to_compare = set(df.columns) - ignored_columns
 
     return df.drop_duplicates(subset=cols_to_compare)
@@ -132,7 +131,3 @@ def generate_csv(folder_path: Union[Path, str], csv_path: [Path, str]):
 
     df = remove_duplicates(df)
     df.to_csv(csv_path, index=False)
-
-
-if __name__ == "__main__":
-    generate_csv("/home/odysseas/Documents/synth1dataset/banks", "a3.csv")
