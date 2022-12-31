@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Dict, Union, Optional, List
 from dataclasses import dataclass
 import pandas as pd
+from constants import default_values
 import copy
 from collections import defaultdict
 
@@ -119,8 +120,11 @@ def generate_csv(folder_path: Union[Path, str], csv_path: [Path, str]):
     dtypes["name"] = str
     dtypes["ver"] = str
     df = pd.DataFrame(preset_dicts).astype(dtypes)
+    for col, val in default_values.items():
+        df[col] = df[col].fillna(val)
+    df = df.drop_duplicates([])
     df.to_csv(csv_path, index=False)
 
 
 if __name__ == "__main__":
-    generate_csv("./banks", "a3.csv")
+    generate_csv("/home/odysseas/Documents/synth1dataset/banks", "a3.csv")
