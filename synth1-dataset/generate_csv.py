@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Dict, Union, Optional, List
 from dataclasses import dataclass
 import pandas as pd
-from constants import default_values
+from constants import DEFAULT_VALUES, META_COLS
 import copy
 from collections import defaultdict
 
@@ -108,6 +108,14 @@ def read_folder(folder_path: Union[Path,str]) -> List[Preset]:
     return presets
 
 
+def remove_duplicates(df: pd.DataFrame):
+    ignored_columns = set(META_COLS)
+    print("Skipped", META_COLS)
+    cols_to_compare = set(df.columns) - ignored_columns
+
+    return df.drop_duplicates(subset=cols_to_compare)
+
+
 def generate_csv(folder_path: Union[Path, str], csv_path: [Path, str]):
     """Given a folder with banks, generates a csv containing all preset parameters"""
     folder_path = Path(folder_path)
@@ -116,13 +124,13 @@ def generate_csv(folder_path: Union[Path, str], csv_path: [Path, str]):
 
     preset_dicts = [p.to_dict() for p in presets]
     dtypes = defaultdict(lambda: int)
-    dtypes["color"] = str
-    dtypes["name"] = str
-    dtypes["ver"] = str
+    for c in META_COLS:
+        dtypes[c] = str
     df = pd.DataFrame(preset_dicts).astype(dtypes)
-    for col, val in default_values.items():
+    for col, val in DEFAULT_VALUES.items():
         df[col] = df[col].fillna(val)
-    df = df.drop_duplicates([])
+
+    df = remove_duplicates(df)
     df.to_csv(csv_path, index=False)
 
 

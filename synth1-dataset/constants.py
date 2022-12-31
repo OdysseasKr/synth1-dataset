@@ -1,4 +1,4 @@
-default_values = {
+DEFAULT_VALUES = {
     67: 0,
     68: 0,
     69: 0,
@@ -32,3 +32,10 @@ default_values = {
     97: 1,
     98: 64,
 }
+
+META_COLS = [
+    "name",
+    "ver",
+    "color",
+    "bankname",
+]
