@@ -1,3 +1,6 @@
+NOTE_DURATION = 3
+WAV_FOLDER = "wavs"
+
 DEFAULT_VALUES = {
     51: 74,
     67: 0,
@@ -142,3 +145,14 @@ PARAMETER_NAMES = {
     97: "Osc1 Sub Octave",
     98: "Delay Tone",
 }
+
+
+SKIPPED_PARAMETERS = [
+    "86",
+    "87",
+    "88",
+    "89",
+    "50",
+    "51",
+    "94",
+] + META_COLS
