@@ -96,7 +96,12 @@ def play_record_note(outport, stream, out_path: str):
     save_to_wav(frames, out_path)
 
 
-def collect_wavs(output_folder: Path, midi_port_name="loopMIDI Port 1", start: int = 0):
+def collect_wav(
+    input_file: Path,
+    output_folder: Path,
+    midi_port_name="loopMIDI Port 1",
+    start: int = 0,
+):
     """Generates a sound for all entries in the CSV file"""
     paudio = pyaudio.PyAudio()
     stream = paudio.open(
@@ -108,7 +113,7 @@ def collect_wavs(output_folder: Path, midi_port_name="loopMIDI Port 1", start: i
         frames_per_buffer=1024,
     )
 
-    df = pd.read_csv((output_folder / "params.csv"), index_col=False, header=0)
+    df = pd.read_csv(input_file, index_col=False, header=0)
     wav_out = output_folder / WAV_FOLDER
     wav_out.mkdir(exist_ok=True)
 
