@@ -10,7 +10,8 @@ import pandas as pd
 import pyaudio
 from tqdm import trange
 
-from .constants import NOTE_DURATION, SKIPPED_PARAMETERS, WAV_FOLDER
+from .constants import (NOTE_DURATION, SKIPPED_PARAMETERS,
+                        SOUND_DEVICE_HOSTAPI, SOUND_DEVICE_NAME, WAV_FOLDER)
 
 CHUNK = 1024
 FORMAT = pyaudio.paInt16
@@ -21,7 +22,7 @@ RATE = 44100
 def find_device(p):
     for i in range(p.get_device_count()):
         dev = p.get_device_info_by_index(i)
-        if dev["name"] == "Stereo Mix (Realtek(R) Audio)" and dev["hostApi"] == 0:
+        if dev["name"] == SOUND_DEVICE_NAME and dev["hostApi"] == SOUND_DEVICE_HOSTAPI:
             dev_index = dev["index"]
             return dev_index
 
