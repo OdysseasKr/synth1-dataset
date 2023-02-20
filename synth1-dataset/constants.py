@@ -1,8 +1,8 @@
 NOTE_DURATION = 3
-WAV_FOLDER = "wavs"
-
 SOUND_DEVICE_NAME = "Stereo Mix (Realtek(R) Audio)"
 SOUND_DEVICE_HOSTAPI = 0
+
+WAV_FOLDER = "wavs"
 
 DEFAULT_VALUES = {
     51: 74,
