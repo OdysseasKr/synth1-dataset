@@ -3,7 +3,7 @@ from pathlib import Path
 import click
 
 from .generate_csv import generate_csv
-from .generate_sounds import collect_wav
+from .generate_sounds import collect_wav, list_devices
 
 
 @click.command()
@@ -21,6 +21,8 @@ def main_cli(command: str, in_path: str, out_path: str, start: int):
         generate_csv(Path(in_path), Path(out_path))
     elif command == "wav":
         collect_wav(Path(in_path), Path(out_path), start=start)
+    elif command == "devices":
+        list_devices()
     else:
         print("Nothing to do.")
 
