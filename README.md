@@ -11,11 +11,13 @@ Allows you to:
 
 # Installation
 
-Simply clone the repo and run `pip install .` to download all dependencies.
+Clone the repo and run 
 
-If you are only interested in generatin a CSV of the parameters, you can skip the next steps
+`pip install .`
 
-When recording the sounds, the python code is only responsible for sending MIDI messages the the VST Host and recording the audio output.  
+__If you are only interested in generating a CSV of the parameters, you can skip the next steps.__
+
+For the recording of the patches, the python code is only responsible for sending MIDI messages the the VST Host and recording the audio output.  
 
 ## DAW setup
 I recommend using [LMMS](https://lmms.io/) since it's open-source and super simple to use. I have only tested this code on Windows. 
@@ -34,14 +36,12 @@ Finally, load the midisettings.ccm in the Synth1 options. This tells Synth1 whic
 
 
 # Usage
-First of all you need to collect all your Synth1 banks in one folder. Then:
-
-To generate a CSV file, you need to collect all your Synth1 banks in a folder.
+To generate a CSV containing all of the parameters, you need to collect all your Synth1 banks in a folder. Then
 
 ```python -m synth1_dataset csv <path to banks_folder> <csv path>```
 
 
-To generate a list of sounds you first need to generate the CSV. Then:
+To generate a WAV file for each patch you first need to generate the CSV. Then:
 
 ```python -m synth1_dataset wav <path to csv> <output folder> --start <index to start from (default 0)>```
 
