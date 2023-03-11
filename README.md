@@ -1,7 +1,7 @@
 # synth1-dataset
 A python toolkit to collect a dataset of sounds generated with the classic [Synth1 VST](https://daichilab.sakura.ne.jp/softsynth/index.html).
 
-**If you are looking for the actual dataset, you can download it [here]()**
+**If you are looking for the actual dataset, you can download it [here](https://www.kaggle.com/datasets/odysseask/synth1-dataset)**
 
 This toolkit is only useful if you want to generate a new dataset using presets that you have collected yourself. 
 
@@ -17,7 +17,7 @@ Clone the repo and run
 
 __If you are only interested in generating a CSV of the parameters, you can skip the next steps.__
 
-For the recording of the patches, the python code is only responsible for sending MIDI messages the the VST Host and recording the audio output.  
+For the recording of the presets, the python code is only responsible for sending MIDI messages the the VST Host and recording the audio output.  
 
 ## DAW setup
 I recommend using [LMMS](https://lmms.io/) since it's open-source and super simple to use. I have only tested this code on Windows. 
@@ -41,7 +41,7 @@ To generate a CSV containing all of the parameters, you need to collect all your
 ```python -m synth1_dataset csv <path to banks_folder> <csv path>```
 
 
-To generate a WAV file for each patch you first need to generate the CSV. Then:
+To generate a WAV file for each preset you first need to generate the CSV. Then:
 
 ```python -m synth1_dataset wav <path to csv> <output folder> --start <index to start from (default 0)>```
 
